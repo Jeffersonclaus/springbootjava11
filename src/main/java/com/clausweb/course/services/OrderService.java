@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clausweb.course.entities.Order;
-import com.clausweb.course.entities.User;
 import com.clausweb.course.repositories.OrderRepository;
-import com.clausweb.course.repositories.UserRepository;
 
 
 @Service
