@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clausweb.course.repositories.UserRepository;
+import com.clausweb.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class UserService {
@@ -24,8 +25,8 @@ public class UserService {
 
 	public User FindById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get(); // retorna get dentro do obj <USER>
-
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id)); // Tenta encontrar id,se nao encontrar,  
+																		//	manda p/ o metodo de excessao
 	}
 
 	public User insert(User obj) {
