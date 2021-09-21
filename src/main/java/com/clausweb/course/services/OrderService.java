@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.clausweb.course.entities.Order;
 import com.clausweb.course.repositories.OrderRepository;
+import com.clausweb.course.services.exceptions.ResourceNotFoundException;
 
 
 @Service
@@ -24,8 +25,8 @@ public class OrderService {
 	
 	public Order FindById(Long id) {
 		Optional <Order> obj = repository.findById(id);
-		return obj.get(); //retorna get dentro do obj <USER>
 		
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 	}
 	
 	

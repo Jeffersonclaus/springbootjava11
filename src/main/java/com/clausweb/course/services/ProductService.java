@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.clausweb.course.repositories.ProductRepository;
+import com.clausweb.course.services.exceptions.ResourceNotFoundException;
 
 @Service
 public class ProductService {
@@ -24,7 +25,7 @@ public class ProductService {
 
 	public Product FindById(Long id) {
 		Optional<Product> obj = repository.findById(id);
-		return obj.get(); // retorna get dentro do obj <Product>
+		return obj.orElseThrow(() -> new ResourceNotFoundException(id));
 
 	}
 
